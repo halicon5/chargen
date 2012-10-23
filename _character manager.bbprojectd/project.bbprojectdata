@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HierarchyData</key>
+	<array>
+		<string>EB40C9E7-1D74-48F5-B8AF-EC3CE1E0C33C</string>
+	</array>
+	<key>ProjectItems</key>
+	<dict>
+		<key>EB40C9E7-1D74-48F5-B8AF-EC3CE1E0C33C</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAFkAAIAAQxNYWNpbnRvc2ggSEQAAAAAAAAAAAAA
+				AAAAAADHUQ8RSCsAAAAFq4IHY2hhcmdlbgAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAABPlfMhHzakAAAAAAAAAAP//
+				//8AAAkgAAAAAAAAAAAAAAAAAAAABVNpdGVzAAAQAAgA
+				AMdRcYEAAAARAAgAAMhIIgkAAAABAAwABauCAAWrewAA
+				kZ8AAgAvTWFjaW50b3NoIEhEOlVzZXJzOnNoYW5lc2lu
+				Z2xldG9uOlNpdGVzOmNoYXJnZW4AAA4AEAAHAGMAaABh
+				AHIAZwBlAG4ADwAaAAwATQBhAGMAaQBuAHQAbwBzAGgA
+				IABIAEQAEgAiVXNlcnMvc2hhbmVzaW5nbGV0b24vU2l0
+				ZXMvY2hhcmdlbgATAAEvAAAVAAIAFf//AAA=
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/shanesingleton/Sites/chargen/</string>
+				<key>RelativePath</key>
+				<string>./</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>char generator</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
+		</dict>
+	</dict>
+	<key>com.barebones.DocumentFormatVersion</key>
+	<integer>5</integer>
+	<key>com.barebones.DocumentType</key>
+	<string>Project</string>
+</dict>
+</plist>

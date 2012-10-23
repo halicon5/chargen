@@ -1,0 +1,323 @@
+/* RESET CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+	background-color: black;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+	background-color: #FFFFCC;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input, input[type="text"], input[type="submit"], input[type="submit"]:focus, input[type="button"], input[type="button"]:focus {
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;	
+	font-size: 9px;
+}
+
+select::-moz-focus-inner, input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
+{   
+	border : 0px;
+} 
+input[type="text"]:focus, select:focus, input[type="submit"]:focus, input[type="button"]:focus {
+	background-color: #a64242;
+	color: #DDEEEE;
+}
+
+
+
+/************** HERE IS MY CSS **************/
+/* Structural CSS */
+#CM_TDsideMenus { width: 250; }
+#CM_TDcontent {width: 1000; }
+
+
+#debug_feedback {background-color: black; clear: all; padding-top: 10px;}
+
+.console {font-family: Monaco;
+		color: green;
+		background-color: black; }
+
+
+
+
+/* CSS for the tabs.  It is best not to fiddle with these */
+.CMTabSet li { /* do not change */
+	display: inline;
+	margin-right: 5px; /* set additional spacing between tabs as desired */
+	-moz-box-shadow: 5px 5px 3px #a64242;
+	-webkit-box-shadow: 5px 5px 3px #a64242;
+	-moz-border-radius-topleft: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-right-radius: 6px;
+}
+
+.CMTabSet li.CMNavTab  { /* settings for selected tab */
+	border-bottom: 1px solid #fff;
+	background-color: #fff; 
+}
+
+.CMTabSet li.CMNavTab a {
+	padding: 3px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+	border: 1px solid #6c6; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+	color: #666; /* set unselected tab link color as desired */
+	text-decoration: none;
+	border-bottom: none;
+	-moz-border-radius-topleft: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-right-radius: 6px;
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#9c9), to(#696)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #9c9,  #696); /* for firefox 3.6+ */
+}
+
+.CMTabSet li.activeTab a {
+	background-color: #cfc; /* set unselected tab background color as desired */
+	color: #020;
+	border: 1px solid #5b5;
+	border-bottom: none;
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#797), to(#aca)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #797,  #aca); /* for firefox 3.6+ */
+}
+
+.CMPanelSet {
+	position: relative;
+	z-index: 1;
+	border: 1px solid #5b5;
+	border-top: 1px;
+	margin-right: 10px;
+	
+	-moz-box-shadow: 5px 5px 3px #a64242;
+	-webkit-box-shadow: 5px 5px 3px #a64242;
+
+	-moz-border-radius-bottomleft: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+
+
+}
+
+.CMpanel {
+	padding: 10px;
+	background-color: #cfc;
+	background: -webkit-gradient(linear, left top, left bottom, from(#aca), to(#cfc)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #aca,  #cfc); /* for firefox 3.6+ */
+}
+
+
+
+
+
+/* Left menu stuff */
+div.CMleftMenu { border: 1px solid #5b5;
+				margin: 4px;
+				margin-right: 10px;
+				margin-bottom: 10px;
+				padding: 4px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;	
+				-moz-box-shadow: 5px 5px 3px #a64242;
+				-webkit-box-shadow: 5px 5px 3px #a64242;
+
+				background: -webkit-gradient(linear, left top, left bottom, from(#9b9), to(#cfc)); /* for webkit browsers */
+				background: -moz-linear-gradient(top,  #9b9,  #cfc); /* for firefox 3.6+ */
+				}
+
+.CMleftMenu li {margin:2px;	}
+
+.CMleftMenu li.activeSelection { background-color: #e3ffe3;
+									border: 1px solid #5B5;
+									margin: 2px;
+									-moz-border-radius: 5px;
+									-webkit-border-radius: 5px;
+									font-weight: bold;
+									}
+
+
+
+/*  General editor stuff */
+.CMeditorGroup { background-color: #e3ffe3;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				padding: 5px;
+				margin: 3px;
+				border: 1px solid #5B5;
+				font-size: .9em;
+}
+
+
+.CMheader { font-weight: bold; }
+
+.CMmonospace { font-family: Monaco; white-space: pre; }
+
+
+
+/* attributes panel stuff */
+
+#CM_DIVeditAttributeSet	{width: 350; 
+						display: inline-block;
+						vertical-align: text-top;
+						margin-right: 5px;
+						}
+						
+.CMattributeSet			{display: table; width: 100%;}
+.CMattributeSetRow		{display: table-row; margin-bottom: 2px; }
+.CMattributeSetRow div	{display: table-cell; text-align: center; padding: 2px; border: 1px solid #7D7;}
+.CMCOLattribName 		{display: table-cell; text-align: right; padding: 2px; border: 1px solid #7D7;}
+.CMCOLattribRank		{display: table-cell; text-align: center; padding: 2px;}
+
+
+/* skill stuff */
+.CMskillListCol {display: inline-block; vertical-align: top;}
+.CMskillSet {display: table; width: 400px; font-size: .9em; background-color:#9a9;}
+.CMskillSetRow	{display: table-row; margin-bottom: 2px; }
+.CMheader.CMskillSetRow {background-color: #7A7;}
+.CMskillSetRow div {display: table-cell; text-align: center; padding: 2px; border: 1px solid #7D7; white-space: nowrap; vertical-align: middle; font-size: .9em}
+.CMCOLskillName 	{display: table-cell; width: 100px; text-align: right; padding: 2px; border: 1px solid #7D7;}
+.CMCOLskillRank		{display: table-cell; text-align: center; padding: 2px;}
+
+.CMCOLmasteryName	{display: table-cell; width: 200px; text-align: right; padding: 2px; border: 1px solid #7d7;}
+
+
+div.CMdisciplineSpells {border: 1px solid #5b5;
+				margin: 4px;
+				margin-right: 10px;
+				margin-bottom: 10px;
+				padding: 4px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;	
+				background: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#AAA)); /* for webkit browsers */
+				background: -moz-linear-gradient(top,  #EEE,  #AAA); /* for firefox 3.6+ */
+				}
+
+.CMpopupOverlay {
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: .8;
+}
+
+.CMxpDialogueBox {
+	z-index: 2;
+	position: fixed;
+	top: 50px;
+	left: 300px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+	-moz-box-shadow: 5px 5px 3px #000000;
+	-webkit-box-shadow: 5px 5px 3px #000000;
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#AAA)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #EEE,  #AAA); /* for firefox 3.6+ */
+
+	border: 1px solid #5B5;
+	width: 450px;
+	height: 400px;
+	padding: 10px;
+	padding-top: 30px;
+	opacity: 1;
+}
+
+.CMxpDialogueBox div {
+	margin: 3px;
+}
+
+.CMcloseButton {
+	position: absolute;
+	top: 5px; right: 5px;
+}
+
+table.CMxpLog tbody tr td { border: 1px solid #7D7; text-align: center; padding: 2px; font-size: .9em;}
+table.CMxpLog thead tr td { font-weight: bold;  border: 1px solid #7D7; padding: 2px; background-color: #AAA; font-size: .9em; }
+div.CMxpLog {
+	width: 100%;
+	height: 120px;
+	overflow:auto;
+}
+
+
+.CMxpSummaryTable {width: 100%;}
+table.CMxpSummaryTable tr td {
+	font-size: .9em;
+	max-width: 100px;
+}
+
+td.CMxpLabel { text-align: right;}
+td.CMxpData {text-align: center;}
+
+table.CMarmor tr.CMheader {background-color: #DDDDDD; }
+table.CMarmor tr td {border: 1px solid #7D7; padding: 2px; font-size:.9em; text-align: center;}
+td.CMCOLarmorName {text-align:left;}
+
+
+.CMinlineBlock	{ display: inline-block; vertical-align: text-top;}
+table.CMDefenseSummary tr td {border: 1px solid #7D7; padding: 2px; font-size:.9em; text-align: center;}
+
+table.CMHitZones tr td {border: 1px solid #7D7; padding: 2px; font-size:.9em; text-align: center;}
+
+
+.flagged { background-color: #a64a4a; }
+.highlight { background-color: #4aa64a; }
+
+#CM_DIVeditCalculatedStats {width: 350; 
+							display: inline-block;
+							vertical-align: text-top;
+							}
+.CMcalculatedStats { display: table; width: 100% }
+.CMcalculatedStatsRow { display: table-row; margin-bottom: 2px; }
+.CMcalculatedStatsRow div {display: table-cell; text-align: center; padding: 2px; border: 1px solid #7D7;}
+.CMcalculatedStatsRow .CMCOLstatName 			{display:  table-cell; text-align: right; white-space: nowrap;}

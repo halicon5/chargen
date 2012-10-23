@@ -1,0 +1,15 @@
+* {margin: 0;}
+form {margin: 0;}
+body {background-color: #DDDDDD;
+        font-size: 9pt;}
+        
+table {font-size: 9pt;}
+.topic {font-weight: bold;}
+
+input {height: 14pt;
+        font-size: 8pt;}
+
+input[readonly], input[disabled] {background-color: #CCFFCC;
+                                    color: #000000;}
+                                    
+.inline {display: inline;}

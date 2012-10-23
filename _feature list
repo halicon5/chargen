@@ -1,0 +1,301 @@
+Broken stuff:
+	CM.skillCollectionUI.prototype.defineWriteInSkillForm = function() {
+	- Need to refresh racial mods periodically (on load, active character switch, etc) to apply Mods to elective skills
+		- same thing needs done with the armor mods. Huzzah.
+	- xp calculations break if there is a deficit at the time that a negative checks or applied value is input
+	- countering skills
+		= split into WILL or SPIRIT types including the kantia website.
+		= change to cost x3
+	- Lots of extra calls are made to the calculation stack
+		= the cause is probably in here: CM.charModSetSVC.prototype.setItemModifiers = function() {
+			= possibly pass a third parameter to those update functions and modify them so they don't trigger updates via mods
+			= Then force an update on that service after the fact at the end.
+			= armor causes this the most because it causes a clear All mods and then adds an update per item.
+	- When characters are first created the following items do not update properly
+		+ calculatedStats
+		+ defense and all descendents.
+
+Features to implement:		
+	Clean up attribute and skill update displays to be all purty and stuff.
+
+	XP Log Stuff
+		+ Allow users to undo XP changes by clicking on an UNDO button next to the log.
+		+ Allow users to flush XP logs for all skills.  Probably a skillCollectionSVC/UI level cascade call possibly with a parameter to splice only the last x # of rows of data
+
+	Edit charSkill object by right clicking or double clicking, turning it into a writeIn skill if the name is changed.
+
+	Apply traits via race
+		+ Need to define traits
+		+ create a trait service
+		+ create a trait data object.
+		+ adding a trait can trigger the addition of a mod
+		+ removing a trait checks to see if mods need to deleted.
+
+	Masteries
+		+ Include rundown of benefits on the mastery page.
+		
+	Mods
+		+ A mod report that shows a list of all mods on a character.
+
+The BIG PLAN:
+	Allow users to set an unlimited # of weapons and armor.  This does nothing but let the program scan through their options
+	Allow users to edit any armor or weapon once added, changing them to write in object.
+	Allow users to set equipment as equipped
+		+ 1 primaryHand (item)
+		+ 1 offHand (item)
+	Calculate defense ratings
+		+ based on equipped items only
+	Calculate initiative
+		+ based on equipped items only
+	Calculate combat AVs
+		+ Scan inventory weapons for items
+		+ Scan HCs and Traits for ambidexterity
+		+ For each weapon give user ability to select primary-hand, off-hand, primary dual, off-hand dual, or two-handed
+			- options will vary based on weapon definition
+		+ Each attackData row will actually have several subObjects action1 thru action6 which allows the masteries to take effect
+		+ Whole adjustments to the AV will be applied to the attackData object, these cascade down to each actionData object
+
+	weapons
+
+	Mods
+
+	Masteries
+		+	Exactly like a skill except
+			- write in field to create a multiple key situation
+				- ex: Multiple-attack [handgun] or multipleAttack [longsword]
+		+	Has a new data field that is a hash of CombatAVs that are modified.
+
+		
+Things to remember:
+- Move all procedurally generated definition material to the bottom of the kantiaDefs file.
+
+	
+
+
+
+COMMITTED FIXES AND CHANGES
+2010-12-03
+	+ Mostly finished the Masteries (Two-handed mastery must wait until after traitsHCs are finished
+
+2010-11-22
+	+ Added some user interface to Masteries
+		- New tab
+		- New mastery form
+
+2010-11-01
+	+ Added the ability to delete armor from inventory.
+	
+2010-10-29
+	+ Added ability to remove Combat AV calcs
+
+2010-10-26
+	+ Basic weapons are now calculating and displaying most atributes.
+	+ Shields do some stuff, but now I need to tie them to a melee skill of some kind.
+
+2010-10-17
+	+ combatActionSVC objects now calculate basic AVs
+		- Still need to take into acount other stuff such as Traits and HCs
+
+2010-10-14
+	+ Modified the defensive staging keys to all read defStaging or natDefStaging instead to differenciate between offensive and defensive staging
+		- Some display stuff may be broken.
+
+2010-10-07
+	+ Users can add armor
+	+ Can equip one item per zone (head, torso, arms, legs, shield, hands)
+	+ Defense ratings are calculated along with an assortment of other pieces of hit location data
+	
+
+2010-10-05
+	+ Modified 	CM.charModSetSVC.prototype.setItemModifiers = function() {
+	+ created an CM.attributeSVC.prototype.setAtribMod = function(value, key) object
+		- Only calls update on that object if a 3rd optional parameter is passed, reducing the number of updates and consequent calls to calculation flow.
+		- This has increased the efficiency of changing things like armor and has reduced calls by at least 33% on most armor & equip changes.
+
+2010-09-30
+	+ Enabled free-form mod updates via armor equipping
+	+ Now enabled the ability to set a list of items in a collection to be specified with mod.include
+	+ Allow an array of target objects to be cycled through, making mod design less repetitive
+
+	
+2010-09-29
+	+ Items add and remove mods, but now I realize that the way I did it sucks donkey dong when things like the Armor Proficiency HC are taken into account.
+	+ Later on, things work the way I want them to regarding mods, modifying a an armorDAT object and then scraping the aggregate data and applying it to the character's mods.
+
+2010-09-28
+	+ Items now equip and unequip in armor, but mods are not yet applied and defense ratings are not calculated.
+
+2010-09-26
+	+ Lots of little changes and big changes in inventory.
+	+ Created the ability to add armor items to inventory
+		- still need to delete, update, add, and view
+		- still need to handle equippable items
+		
+2010-09-21
+	+ made big changes to the way attributes are handled so that armor will work.
+		- added totAdj, AV_mod, and adj_mod to attributes, fixed up some of the things that refer to those. I'm sure I borked a few things.
+
+2010-09-20
+	+ created inventoryItem DAT & SVC along with inventorySet DAT & SVC objects
+	+ created armorDef.js
+	
+2010-09-19
+	+ re-arranged the folder structure
+
+2010-09-18
+	+ Massive changes to the way mods are handled.
+		- now defines the charModDAT attributes on the fly based on the kantia.modTypeDefs object used to define.
+
+2010-09-16
+	+ Enabled the ability to cascade mods down by attribute within a dataCollection
+	+ Added Rom-shur race mods
+
+2010-09-15
+	+ Cleaned up some UI issues in the magic section
+	+ Implemented group based mods
+		= modified 	CM.charModifiersSVC.prototype.applyMod = function(mod) 
+			- added extra condtion if (svc && !svc.applyMod && (mod.mass) )
+			- only triggers if the mod.target path doesn't point to a specific modSetSVC.
+		= added CM.charModifiersSVC.prototype.applyModsByGroup = function(mod, list)
+			- scans through every modSetSVC in the list and then applies mods based on the groups
+
+2010-09-14
+	+ added a lot of spell functionality
+		+ Dynamic adding of spell lists when disciplines are added.
+		+ Dynamic generation of spell rows including power calculation
+	+ added CM.removeDescendents() functionality to:
+		- charSkillUI
+		- charSpellUI
+		- charDisciplineUI (by inheritance via charSkillUI)
+	+ basically finished the spell module. Need to clean up some update display issues
+	
+2010-09-12	
+	- added the ability to force manual initialization on skillCollectionUI and skillCollectionSVC objects
+		+ allows some minor tweaks from default behavior before initialization
+	- added spells, disciplineSpells, and spellDisciplines to the kantiaDefs file. Basically a metric fuck-ton of hashtables.
+	- added CM.spellDef for the basic spell definition handling
+	
+	
+2010-09-11
+	- Modified many UI and SVC objects to refrence their collection name instead of hard code. Most changes were in SkillCollectionUI and skillCollectionSVC
+	- Got the dicipline dropdown to work finally.
+
+2010-09-09
+	- Created 	CM.createAttributeSkillList = function(indexList, source, target)
+		+ creates lists of skills based on the attributes present
+
+2010-09-07
+	- Per Justin's amazingly good suggestion, created a pop-up overlay that is semi-transparent and prevents users from accidentally clicking on objects below the popup.
+		+ CM.createPopupOverlay();
+		+ CM.removePopupOverlay();
+	- Created the panelMagicUI.js object
+
+2010-09-06
+	- created
+		+ disciplineCollectionDAT
+		+ disciplineCollectionSVC (inherits prototype from skillCollectionSVC)
+	- kantiaDefs
+		- manually set up Discipline definitions
+		- proceduratlly set up Discipline casting skills
+	
+2010-09-05
+	- CM.charSkillUI	
+		- prevent rank change when non-numeric values are entered.  UI level check.
+		- prevent rank change when the parseInt value of an entered rank is the same as current rank.
+	- CM.charSkillUI definition now requires the dataCollection name (spells, skills, disciplines, etc)
+		- this describes the object name in a charDAT object.
+	- CM.skillCollectionUI definition now requireds a dataCollection name as well
+	- Modified all references in skillCollectionUI to create new charSkillUI's with the collection name
+	- Modified all references to skillCollectionUI's to handle the new collection name designations
+	- some references to the following paths might still be in place, must fix as I find them:
+		"Manager.activeChar.d.skills...." when referencing data objects to Manager.activeChar[collection].list[skillname]
+		"Manager.activeChar.skills" when referenceing 
+	- Fixed bug that allowed stacked xp dialog pop-ups
+	- implemented a pop-up to warn that changing the rank of a skill that already has XP applied to it could cause unwanted calculation issues.  This should be implemented in the charSkillUI object.  If cancelled, reset the value back to current rank.
+
+2010-09-04
+	- Finished most of the xp interface
+	
+2010-09-03
+	- Started xpDialogue box code
+	- created the CM.removeDescendents() function to clear all node references.
+
+2010-09-02
+	- Finishied rankedXpSVC.updateRankByXp(), next up... user interface.
+	- Modified charSkillUI to automatically add a rankedXpUI to every row.
+
+2010-08-31
+	It's my birthday and I'm coding. Yeah... totally gay.
+	Created CM.calc_rank_by_xp
+	Added the following elements to rankedXpDAT
+	- burned		tracks the total amount of xp the character has burned on this skill
+	- spent			current deficit, can't raise rank until deficit has been resolved
+	- pegged_rank	keeps the skill rank at this level, even if deficit spending would drop the total xp below the current skill level.
+	- cost 			redundant but makes data references faster.
+
+2010-08-29
+	- created the rankedXpDAT object definition
+	- created the xpLogDAT object definition
+	- modified the charSkillDAT object definition
+		+ removed the individual xp elements and replaced them with a rankedXpDAT object instead.
+		+ removed the masteryOpts object from charSkillDAT
+	- created CM.calc_xp_by_rank
+
+2010-08-28
+	- modify the skillCollectionSVC object to hold a list of options for optional skills that the character can add to the character.
+		- need to have an addElectiveSkill() method added to skillCollectionSVC (DONE)
+		- need to have an addWriteInSkill() method added to skillCollectionSVC (DONE)
+	- when assigning skills to a character's skillCollectionDAT list define it as 'd', 'e' (elective), or 'w' (write) (DONE)
+	- skillCollectionUI needs to have a type (DONE)
+	- UI needs to flush the UI rows of elective skills when the character is changed.  Since a new char service is initiated each time, this should be pretty easy to do. (DONE)
+	- UI drop down list to add elective skills to a character's data profile. (DONE)
+		- charSkillDAT.skType = 'e'	(DONE)
+		- Allow deletes only if the skill rank is set to zero (DONE, confirmation dialogue instead)
+		- Need to modify the charSkillSVC and charSkillUI to have different behavior and create a delete button for 'e' skills (partial, e is complete) (DONE)
+	- UI write-in box for homemade skill defs. (DONE)
+		- need to have a createSkill(name, cost, [attrib array], mixtype) method added to skillCollectionSVC (DONE)
+		- will verify that a current definition doesn't already exist to prevent overwrites. (DONE)
+	- On the fly skills will need to have a mods object created to correspond, on deletion this needs to be killed as well. (DONE)
+		- this will need to be done on character initialization as well. (DONE, the default set-up makes this work since it is driven off of the character data object)
+	- created skillCollectionSVC.updateWriteInSkills which loops through all write in skills and refreshes them.
+		- modified calculationFlow.js to make all writeInSkills update every time an attribute is adjusted.
+
+2010-08-24
+	- Oh happiness! Added 	CM.skillCollectionUI.prototype.defineElectiveRows = function()
+	- Modified the skillCollectionUI.updateDisplay() to detect if electiveRows need defined.
+		- a happy side effect of this is that if the UI has unused and defined elective rows that don't apply to the character then the system should automatically clear any remnant data and services because the CM.charSkillUI.deleteSkill() method is used.
+	- Turned academic/practical skills into elective skills.
+
+2010-08-23
+	- Delete skill row functionality added
+		- removes data and service objects and modSet objects as well as calls cascade through the service objects.
+	- dynamically adds modSetDAT and modSetSVC to a character when new skills are created
+	- tested that racial mods actually add to elective skills, but only if the skill is established before the race is changes.
+	
+2010-08-22
+	- Drop down elective skills now creates a new charSkillUI row in the editor!
+	- charSkillDAT object created on elective drop down
+	- charSkillSVC object created on elective drop down
+	
+2010-08-20
+	- Created a drop down skill selection funcitonality
+	
+2010-08-19
+	- Modified the skillCollctionSVC and UI functions to be more dynamic and more configurable at run-time
+		- modify the skillCollectionSVC object to accept an array parameter that determines the default load items
+
+2010-08-15
+	- Procedurally generate weapon skills based off of weapon definitions
+
+2010-08-14
+	- Mods don't seem to apply properly when loading data. Works fine for attributes, not skills (fixed?)	
+	- When changing races, mods are not clearing off properly in the data context. (fixed)
+
+2010-08-13
+	Make switching a race more efficient.
+		- instead of looping through every attribute, skill, etc, store a list of current mods and their parent object in a service object.  Will be able to save thousands of operations. (complete and it worked AWESOME!)
+		- need to flush the lists on both sides of the modSvc sets (complete... I think)
+		- will need to scan every object when loading a character (complete)
+		- need to assign a copy of modSvc to the active Mods object (need to modifiy charModSetSVC class to have a reference to the active
+	- Need to make skills update in a targeted fashion based off of attributes being modified. (DONE!)
+	- Have a procedurally generated kantia defs object to hold a list of every skill based on their attributes.

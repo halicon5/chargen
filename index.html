@@ -1,0 +1,176 @@
+<html>
+<head>
+	<title>Character Creator</title>
+
+	<link href="CM.css" rel="stylesheet" type="text/css" />
+
+
+	
+	<script type="text/javascript" src="CM.js"></script>
+	<script type="text/javascript" src="kantiaDefs/skillDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/masteryDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/modifierDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/meleeWeaponDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/rangedWeaponDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/spellDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/armorDef.js"></script>
+	<script type="text/javascript" src="kantiaDefs/traitHCDef.js"></script>
+
+	<script type="text/javascript" src="kantiaDefs/kantiaDefs.js"></script>
+	<script type="text/javascript" src="kantiaDefs/raceDefs.js"></script>
+	<script type="text/javascript" src="kantiaDefs/spellDefs.js"></script>
+	<script type="text/javascript" src="kantiaDefs/armorDefs.js"></script>
+	<script type="text/javascript" src="kantiaDefs/traitHCDefs.js"></script>
+	
+	<script type="text/javascript" src="calculationFlow.js"></script>
+	<script type="text/javascript" src="calculationStack.js"></script>
+	
+	<script type="text/javascript" src="panels/panelCharacter_UI.js"></script>
+	<script type="text/javascript" src="panels/panelAttributes_UI.js"></script>
+	<script type="text/javascript" src="panels/panelSkills_UI.js"></script>
+	<script type="text/javascript" src="panels/panelMasteries_UI.js"></script>
+	<script type="text/javascript" src="panels/panelMagic_UI.js"></script>
+	<script type="text/javascript" src="panels/panelArmor_UI.js"></script>
+	<script type="text/javascript" src="panels/panelWeapons_UI.js"></script>
+	<script type="text/javascript" src="panels/panelTraitHCs_UI.js"></script>
+
+	
+	<script type="text/javascript" src="manager/charManager_DAT.js"></script>
+	<script type="text/javascript" src="manager/charManager_SVC.js"></script>
+	<script type="text/javascript" src="manager/charManager_UI.js"></script>
+	
+	<script type="text/javascript" src="manager/charGroup_DAT.js"></script>
+	<script type="text/javascript" src="manager/charGroup_SVC.js"></script>
+	<script type="text/javascript" src="manager/charGroup_UI.js"></script>
+	
+	<script type="text/javascript" src="manager/char_DAT.js"></script>
+	<script type="text/javascript" src="manager/char_SVC.js"></script>
+	<script type="text/javascript" src="manager/char_UI.js"></script>
+	
+	<script type="text/javascript" src="attributes/attributeSet_DAT.js"></script>
+	<script type="text/javascript" src="attributes/attributeSet_SVC.js"></script>
+	<script type="text/javascript" src="attributes/attributeSet_UI.js"></script>
+	
+	<script type="text/javascript" src="attributes/attribute_DAT.js"></script>
+	<script type="text/javascript" src="attributes/attribute_SVC.js"></script>
+	<script type="text/javascript" src="attributes/attribute_UI.js"></script>
+	
+	<script type="text/javascript" src="attributes/calculatedStats_DAT.js"></script>
+	<script type="text/javascript" src="attributes/calculatedStats_SVC.js"></script>
+	<script type="text/javascript" src="attributes/calculatedStats_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/rankedXp_DAT.js"></script>
+	<script type="text/javascript" src="skills/rankedXp_SVC.js"></script>
+	<script type="text/javascript" src="skills/rankedXp_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/xpLog_DAT.js"></script>
+	<script type="text/javascript" src="skills/xpLog_SVC.js"></script>
+	<script type="text/javascript" src="skills/xpLog_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/skillCollection_DAT.js"></script>
+	<script type="text/javascript" src="skills/skillCollection_SVC.js"></script>
+	<script type="text/javascript" src="skills/skillCollection_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/charSkill_DAT.js"></script>
+	<script type="text/javascript" src="skills/charSkill_SVC.js"></script>
+	<script type="text/javascript" src="skills/charSkill_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/disciplineCollection_DAT.js"></script>
+	<script type="text/javascript" src="skills/disciplineCollection_SVC.js"></script>
+	<script type="text/javascript" src="skills/disciplineCollection_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/charDiscipline_DAT.js"></script>
+	<script type="text/javascript" src="skills/charDiscipline_SVC.js"></script>
+	<script type="text/javascript" src="skills/charDiscipline_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/spellCollection_DAT.js"></script>
+	<script type="text/javascript" src="skills/spellCollection_SVC.js"></script>
+	<script type="text/javascript" src="skills/spellCollection_UI.js"></script>
+	
+	<script type="text/javascript" src="skills/disciplineSpells_UI.js"></scrit>
+	
+	<script type="text/javascript" src="skills/charSpell_DAT.js"></script>
+	<script type="text/javascript" src="skills/charSpell_SVC.js"></script>
+	<script type="text/javascript" src="skills/charSpell_UI.js"></script>
+
+	<script type="text/javascript" src="skills/mastery_DAT.js"></script>
+	<script type="text/javascript" src="skills/mastery_SVC.js"></script>
+	<script type="text/javascript" src="skills/mastery_UI.js"></script>
+
+	<script type="text/javascript" src="skills/masteryCollection_DAT.js"></script>
+	<script type="text/javascript" src="skills/masteryCollection_SVC.js"></script>
+	<script type="text/javascript" src="skills/masteryCollection_UI.js"></script>
+	
+	<script type="text/javascript" src="traitsHCs/traitHCSet_DAT.js"></script>
+	<script type="text/javascript" src="traitsHCs/traitHCSet_SVC.js"></script>
+	<script type="text/javascript" src="traitsHCs/traitHCSet_UI.js"></script>
+	<script type="text/javascript" src="traitsHCs/traitHC_DAT.js"></script>
+	<script type="text/javascript" src="traitsHCs/traitHC_SVC.js"></script>
+	<script type="text/javascript" src="traitsHCs/traitHC_UI.js"></script>
+	
+	<script type="text/javascript" src="inventory/inventorySet_DAT.js"></script>
+	<script type="text/javascript" src="inventory/inventorySet_SVC.js"></script>
+	<script type="text/javascript" src="inventory/inventorySet_UI.js"></script>	
+	<script type="text/javascript" src="inventory/inventoryItem_DAT.js"></script>
+	<script type="text/javascript" src="inventory/inventoryItem_SVC.js"></script>
+	<script type="text/javascript" src="inventory/armor_DAT.js"></script>
+	<script type="text/javascript" src="inventory/armor_SVC.js"></script>
+	<script type="text/javascript" src="inventory/armor_UI.js"></script>
+	
+	<script type="text/javascript" src="userDefinedStats_DAT.js"></script>
+	<script type="text/javascript" src="userDefinedStats_SVC.js"></script>
+	
+	<script type="text/javascript" src="mods/charModifiers_DAT.js"></script>
+	<script type="text/javascript" src="mods/charModifiers_SVC.js"></script>
+
+	<script type="text/javascript" src="charRace_DAT.js"></script>
+	<script type="text/javascript" src="charRace_SVC.js"></script>
+	<script type="text/javascript" src="charRace_UI.js"></script>
+	
+	
+	<script type="text/javascript" src="mods/charModSet_DAT.js"></script>
+	<script type="text/javascript" src="mods/charModSet_SVC.js"></script>
+	
+	<script type="text/javascript" src="mods/activeModifiers_SVC.js"></script>
+	<script type="text/javascript" src="mods/activeModIdSet_SVC.js"></script>
+
+	<script type="text/javascript" src="mods/charMod_DAT.js"></script>
+	<script type="text/javascript" src="mods/charMod_SVC.js"></script>
+
+	<script type="text/javascript" src="defense/defenseStats_DAT.js"></script>
+	<script type="text/javascript" src="defense/defenseStats_SVC.js"></script>
+	<script type="text/javascript" src="defense/defenseStats_UI.js"></script>
+	<script type="text/javascript" src="defense/hitZone_DAT.js"></script>
+	<script type="text/javascript" src="defense/hitZone_SVC.js"></script>
+	<script type="text/javascript" src="defense/hitZone_UI.js"></script>
+	
+	<script type="text/javascript" src="combat/combatAction_DAT.js"></script>
+	<script type="text/javascript" src="combat/combatAction_SVC.js"></script>
+	<script type="text/javascript" src="combat/combatAction_UI.js"></script>
+	<script type="text/javascript" src="combat/combatStats_DAT.js"></script>
+	<script type="text/javascript" src="combat/combatStats_SVC.js"></script>
+	<script type="text/javascript" src="combat/combatStats_UI.js"></script>
+
+</head>
+
+<body>
+
+
+		<div class='console'>
+			<form id="commandLine" name="commandLine" size="120" onSubmit="CM.eval(document.forms['commandLine'].elements['command'].value); updateDebugBox(); document.forms['commandLine'].elements['command'].value = ''; return false;">
+				<input class='console' size="80" name="command" /><input type="submit" value="run" />
+			</form>
+		</div>
+
+<div id="CMdisplay"></div>
+
+
+<div class='console'><pre id="debug_feedback"></pre></div>
+
+<script type="text/javascript" src="execute.js"></script>
+
+
+
+</body>
+
+</html>
